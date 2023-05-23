@@ -1,0 +1,7 @@
+.Statistics {
+  display: flex;
+}
+
+.Statistics__item{
+  background-color: aqua;
+}
