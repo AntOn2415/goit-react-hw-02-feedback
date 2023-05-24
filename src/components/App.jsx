@@ -6,7 +6,6 @@ import Notification from './Notification';
 import PropTypes from 'prop-types';
 
 export class App extends Component {
-
   static propTypes = {
     good: PropTypes.number,
     neutral: PropTypes.number,
@@ -17,12 +16,12 @@ export class App extends Component {
   state = {
     good: 0,
     neutral: 0,
-    bad: 0
+    bad: 0,
   };
 
   handleFeedback = option => {
     this.setState(prevState => ({
-      [option]: prevState[option] + 1
+      [option]: prevState[option] + 1,
     }));
   };
 
@@ -43,30 +42,25 @@ export class App extends Component {
     const positivePercentage = this.calculatePositivePercentage();
 
     return (
-      <div>
+      <div className="container">
         <Section title="Please leave feedback">
-          <FeedbackOptions
-            options={['good', 'neutral', 'bad']}
-            onLeaveFeedback={this.handleFeedback}
-          />
+          <FeedbackOptions onLeaveFeedback={this.handleFeedback} />
         </Section>
 
         <Section title="Statistics">
-        {totalFeedback === 0 ? (
-            <Notification message="There is no feedback"/>
+          {totalFeedback === 0 ? (
+            <Notification message="There is no feedback" />
           ) : (
             <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={totalFeedback}
-            positivePercentage={positivePercentage}
-          />
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={totalFeedback}
+              positivePercentage={positivePercentage}
+            />
           )}
         </Section>
       </div>
     );
   }
 }
-
-
